@@ -82,6 +82,8 @@ function App() {
                         <Navigate to="/signin" />
                     )
                 } />
+                {/* Default route (wildcard) redirect to sign-in page*/}
+                <Route path="*" element={<Navigate to="/signin" />} />
                 <Route path="/signin" element={<SignInPage />} />
             </Routes>
         </Router>
