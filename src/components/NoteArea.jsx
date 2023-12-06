@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import axios from "axios";
 
 function NoteArea(props) {
   const [note, setNote] = useState({
@@ -18,7 +19,16 @@ function NoteArea(props) {
   }
 
   function submitedNote(event) {
-    props.onAdd(note);
+    // Send new note to the server
+    axios.post("http://localhost:5001/api/notes", note)
+      .then(response => {
+        props.onAdd(response.data);
+      })
+      .catch(error => {
+        console.error("Error adding note:", error);
+      });
+
+
     setNote({
       title: "",
       content: ""

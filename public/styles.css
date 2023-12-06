@@ -1,20 +1,43 @@
+/* Enhanced CSS Styles */
+
+/* Reset styles */
 * {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
 }
 
+/* Fonts and basic styling */
 html {
   font-family: "Montserrat", sans-serif;
 }
 
 body {
-  background: #eee;
+  background: var(--background-color, #eee);
   padding: 0 16px;
+  font-size: 16px;
 }
 
+
+
+/* Adjust text color for better visibility in dark mode */
+body.dark-mode {
+  color: #5a655d; /* Set a light color for text */
+}
+
+/* If your notes have a specific class, adjust the text color for that class as well */
+.note.dark-mode {
+  color: #000; /* Set a dark color for text */
+  background-color: #333;
+}
+/* Adjust the title text color for better visibility in dark mode */
+.note.dark-mode h1 {
+  color: #191818; /* Set a light color for the title text in dark mode */
+}
+
+/* Header styles */
 header {
-  background-color: #13cff5;
+  background-color: var(--primary-color, #13cff5);
   margin: auto -16px;
   padding: 16px 32px;
   box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.3);
@@ -26,26 +49,37 @@ header h1 {
   font-weight: 200;
 }
 
+/* Footer styles */
 footer {
-  position: absolute;
   text-align: center;
-  bottom: 0;
-  width: 100%;
-  height: 2.5rem;
+  padding: 16px;
 }
 
 footer p {
   color: #ccc;
 }
 
+/* Note card styles */
 .note {
-  background: #fff;
+  background: #ffffffa9;
   border-radius: 7px;
   box-shadow: 0 2px 5px #ccc;
   padding: 10px;
-  width: 240px;
-  margin: 16px;
-  float: left;
+  width: 100%;
+  margin: 16px 0;
+  box-sizing: border-box;
+  transition: box-shadow 0.3s ease-in-out, transform 0.2s ease-in-out;
+}
+
+.note:hover {
+  box-shadow: 0 4px 8px #ccc;
+  transform: scale(1.05);
+}
+
+/* Color Scheme */
+:root {
+  --primary-color: #13cff5;
+  --accent-color: #ff7e67;
 }
 
 .note h1 {
@@ -60,11 +94,9 @@ footer p {
   word-wrap: break-word;
 }
 
+/* Button styles */
 .note button {
-  position: relative;
-  float: right;
-  margin-right: 10px;
-  background: #13cff5;
+  background: var(--primary-color);
   color: #fff;
   border: none;
   width: 36px;
@@ -74,14 +106,14 @@ footer p {
   border-radius: auto;
 }
 
+/* Form styles */
 form {
-  position: relative;
-  width: 480px;
-  margin: 30px auto 20px auto;
+  width: 100%;
   background: #fff;
   padding: 15px;
   border-radius: 7px;
   box-shadow: 0 1px 5px rgb(138, 137, 137);
+  box-sizing: border-box;
 }
 
 form input,
@@ -96,10 +128,7 @@ form textarea {
 }
 
 form button {
-  position: absolute;
-  right: 18px;
-  bottom: -18px;
-  background: #13cff5;
+  background: var(--primary-color);
   color: #fff;
   border: none;
   border-radius: 50%;
@@ -108,4 +137,144 @@ form button {
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
   cursor: pointer;
   outline: none;
+}
+
+/* Media query for smaller screens */
+@media screen and (max-width: 768px) {
+
+  body {
+    font-size: 14px;
+  }
+}
+
+/* Dark Mode */
+body.dark-mode {
+  background: #333;
+  color: #fff;
+}
+
+/* Error Handling Styles */
+.error-message {
+  color: #ff0000;
+  font-size: 0.9em;
+}
+
+/* Hover Effect for Buttons */
+button:hover {
+  background: var(--accent-color);
+}
+
+/* Add a Gradient Background to the Header */
+header {
+  background: linear-gradient(to right, var(--primary-color), var(--accent-color));
+}
+
+/* Custom Checkbox Styles (for future use, e.g., selecting multiple notes) */
+.checkbox-container {
+  display: inline-block;
+  position: relative;
+  padding-left: 30px;
+  cursor: pointer;
+}
+
+.checkbox-container input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 25px;
+  width: 25px;
+  background-color: #eee;
+  border-radius: 5px;
+}
+
+.checkbox-container:hover input ~ .checkmark {
+  background-color: #ccc;
+}
+
+.checkbox-container input:checked ~ .checkmark {
+  background-color: var(--primary-color);
+}
+
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+.checkbox-container input:checked ~ .checkmark:after {
+  display: block;
+}
+
+.checkbox-container .checkmark:after {
+  left: 10px;
+  top: 5px;
+  width: 5px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 3px 3px 0;
+  transform: rotate(45deg);
+}
+
+/* Example: Apply styles for selected notes using the checkbox */
+/* .note.selected {
+  background: var(--accent-color);
+  color: #fff;
+} */
+
+/* Additional Styling for Footer */
+footer {
+  background: linear-gradient(to right, var(--primary-color), var(--accent-color));
+  color: #fff;
+  padding: 16px;
+  text-align: center;
+}
+
+/* Additional Styling for Form Input Placeholder */
+form input::placeholder,
+form textarea::placeholder {
+  color: #999;
+}
+
+/* Example: Adding a Divider Line */
+hr {
+  border: 0;
+  border-top: 1px solid #eee;
+  margin: 20px 0;
+}
+
+/* Example: Styling for a Notification Banner */
+.notification {
+  padding: 16px;
+  background-color: #4CAF50;
+  color: #fff;
+  text-align: center;
+  font-size: 1.2em;
+  margin-bottom: 20px;
+}
+
+/* Example: Styling for a Warning Banner */
+.warning {
+  padding: 16px;
+  background-color: #ff9800;
+  color: #fff;
+  text-align: center;
+  font-size: 1.2em;
+  margin-bottom: 20px;
+
+
+
+  form {
+    width: 100%;
+  }
+
+  .note {
+    width: 100%;
+    margin: 16px 0;
+  }
 }
