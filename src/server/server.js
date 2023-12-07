@@ -9,11 +9,23 @@ const PORT = process.env.PORT || 5001;
 app.use(bodyParser.json());
 app.use(cors());
 
+/*
 // Connect to MongoDB
 mongoose.connect("mongodb+srv://ronaldoismael15:12345@cluster0.41xflul.mongodb.net/?retryWrites=true&w=majority", {
     useNewUrlParser: true,
     useUnifiedTopology: true,
 });
+*/
+
+// Connect to MongoDB
+const MONGODB_URI = process.env.MONGODB_URI || "mongodb+srv://ronaldoismael15:12345@cluster0.41xflul.mongodb.net/?retryWrites=true&w=majority";
+
+mongoose.connect(MONGODB_URI, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+});
+
+
 
 // Capture the success event when the connection is open
 mongoose.connection.on("open", () => {

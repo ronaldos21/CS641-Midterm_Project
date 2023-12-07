@@ -16,7 +16,8 @@ function App() {
 
     useEffect(() => {
         // Fetch notes from the server
-        axios.get("http://localhost:5001/api/notes")
+        //axios.get("http://localhost:5001/api/notes")
+        axios.get(process.env.REACT_APP_MONGODB_URI + "/api/notes")
             .then(response => {
                 setNotes(response.data);
             })
