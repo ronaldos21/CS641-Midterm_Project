@@ -1,6 +1,5 @@
-// App.jsx
 import React, { useState, useEffect } from "react";
-import { BrowserRouter as Router, Route, Routes, Navigate} from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes, Navigate } from "react-router-dom";
 import axios from "axios";
 import Heading from "./Heading";
 import Footer from "./Footer";
@@ -16,8 +15,7 @@ function App() {
 
     useEffect(() => {
         // Fetch notes from the server
-        //axios.get("http://localhost:5001/api/notes")
-        axios.get(process.env.REACT_APP_MONGODB_URI + "/api/notes")
+        axios.get("http://localhost:5001/api/notes")
             .then(response => {
                 setNotes(response.data);
             })
@@ -83,8 +81,6 @@ function App() {
                         <Navigate to="/signin" />
                     )
                 } />
-                {/* Default route (wildcard) redirect to sign-in page*/}
-                <Route path="*" element={<Navigate to="/signin" />} />
                 <Route path="/signin" element={<SignInPage />} />
             </Routes>
         </Router>
