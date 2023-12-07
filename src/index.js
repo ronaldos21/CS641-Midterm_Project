@@ -1,7 +1,6 @@
 import React from "react";
-//import ReactDOM from "react-dom";
+import ReactDOM from "react-dom";
 import App from "./components/App";
-import { createRoot } from "react-dom/client";
 
 // Function to toggle dark mode
 function toggleDarkMode() {
@@ -13,21 +12,21 @@ function toggleDarkMode() {
   localStorage.setItem('darkMode', isDarkModeEnabled);
 }
 
-// Check user preference for dark mode
-const isDarkModeEnabled = localStorage.getItem('darkMode') === 'true';
+// Check user preference on page load
+document.addEventListener('DOMContentLoaded', () => {
+  const isDarkModeEnabled = localStorage.getItem('darkMode') === 'true';
 
-if (isDarkModeEnabled) {
-  document.body.classList.add('dark-mode');
-}
+  if (isDarkModeEnabled) {
+    document.body.classList.add('dark-mode');
+  }
+});
 
-// Use createRoot to render the React App
-const root = document.getElementById("root");
-const reactRoot = createRoot(root);
-
-reactRoot.render(
+// Render the React App
+ReactDOM.render(
   <React.StrictMode>
     <App />
-  </React.StrictMode>
+  </React.StrictMode>,
+  document.getElementById("root")
 );
 
 // Example: Add event listener to a button with ID "darkModeToggle"
