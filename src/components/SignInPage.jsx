@@ -27,9 +27,12 @@ const SignInPage = () => {
   const handleEmailSignIn = async () => {
     try {
       setError(null);
+      console.log('Attempting email/password sign-in...');
       const result = await signInWithEmailAndPassword(auth, email, password);
+      console.log('Sign-in success:', result.user);
       setUser(result.user);
     } catch (error) {
+      console.error('Sign-in error:', error);
       setError(error.message);
     }
   };
