@@ -13,6 +13,8 @@ function App() {
     const [notes, setNotes] = useState([]);
     const [user, setUser] = useState(null);
 
+    //const mongoData = new MongoData()
+
     useEffect(() => {
         // Fetch notes from the server
         axios.get("http://localhost:5001/api/notes")
@@ -89,4 +91,4 @@ function App() {
     );
 }
 
-export default App;
+export default App; 
