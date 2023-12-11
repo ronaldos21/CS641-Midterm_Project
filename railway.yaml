@@ -1,0 +1,7 @@
+services:
+  - id: node
+    name: node
+    type: node
+    plan: free
+    port: 5001  # Set the port your Node.js server is running on
+    start: npm run start-server  # Use the correct script to start your server
